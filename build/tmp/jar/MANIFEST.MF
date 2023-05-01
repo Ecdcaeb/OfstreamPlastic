@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: OfstreamAdvancement
-Implementation-Version: 116.0
-Specification-Title: ofstream_plastic
-Implementation-Timestamp: 2023-05-01T18:52:46+0800
-Specification-Version: 1
-
