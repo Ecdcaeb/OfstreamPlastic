@@ -21,25 +21,15 @@ import static net.minecraft.client.gui.inventory.GuiContainer.INVENTORY_BACKGROU
 public class RenderHelperPlastic {
     public static FBOHelper fboHelperX36=new FBOHelper(36);
     public static FBOHelper fboHelperX144=new FBOHelper(144);
-    public static IRenderObject renderPotionObjectInv=new IRenderObject(){
-        @Override
-        public void render(Object... objects) {
-            if (objects.length==1){
-                Object object= Arrays.stream(objects).iterator().next();
-                if (object instanceof Potion){
-                    Potion potion=(Potion) object;
-                    //GlStateManager.enableColorLogic();
-                    GlStateManager.enableTexture2D();
-                    GlStateManager.enableBlend();
-                    GlStateManager.enableAlpha();
-                    renderPotionInventory(potion);
-                    GlStateManager.disableTexture2D();
-                    GlStateManager.disableBlend();
-                    GlStateManager.disableAlpha();
-                    //GlStateManager.disableColorLogic();
-                }
-            }
-        }
+    public static IRenderObject renderPotionObjectInv= objects -> {
+        Potion potion = (Potion) objects[0];
+        GlStateManager.enableTexture2D();
+        GlStateManager.enableBlend();
+        GlStateManager.enableAlpha();
+        renderPotionInventory(potion);
+        GlStateManager.disableTexture2D();
+        GlStateManager.disableBlend();
+        GlStateManager.disableAlpha();
     };
     public static void renderPotionInventory(Potion potion){
         int i=-6;
@@ -51,14 +41,11 @@ public class RenderHelperPlastic {
         }
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         Minecraft.getMinecraft().getTextureManager().bindTexture(INVENTORY_BACKGROUND);
-        //drawTexturedModalRect(i, j, 0, 166, 140, 32);
-
         if (potion.hasStatusIcon())
         {
             int i1 = potion.getStatusIconIndex();
-            drawTexturedModalRect(i + 6, j + 7, 0 + i1 % 8 * 18, 198 + i1 / 8 * 18, 18, 18);
+            drawTexturedModalRect(0, 0, i1 % 8 * 18, 198 + i1 / 8 * 18, 18, 18);
         }
-
         potion.renderInventoryEffect(i, j, potioneffect, Minecraft.getMinecraft());
     }
     public static void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height)

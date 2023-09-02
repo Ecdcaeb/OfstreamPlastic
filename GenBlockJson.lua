@@ -1,5 +1,5 @@
 local outFile = nil;
-local modName = "add_potion";
+local modName = "moremomostories";
 local blockName = "grid_normal";
 
 local function GenModelBlockItem()
@@ -60,14 +60,14 @@ local function GenItem(_typeName, _itemName, _HoldingType)
 end
 
 -- creat item
-GenItem("misc", "item_scene_1","generated");
+--GenItem("misc", "item_book","generated");
 
 --GenItem("misc", "item_rainbowj","handheld");
 
 --create block
 
-GenBlock("blackstonebrick");
-
+--GenBlock("block_end_book_shelf");
+GenBlock("block_tp_hileb");
 
 --GenBlock("idl_glass");
 
